@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AP Shop  </title>
+  <title>AP Shop </title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -37,7 +37,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $page = end($link_array);
 
      ?>
-    <form class="form-inline ml-3" method="post" action="<?php $page == 'index.php' ? 'index.php' : 'user_list.php'; ?>">
+    <form class="form-inline ml-3" method="post"
+    <?php if($page == 'index.php') : ?>
+      action="index.php"
+    <?php elseif ($page == 'category.php') : ?>
+    action="category.php"
+    <?php elseif ($page == 'user_list.php') :?>
+    action="user_list.php"
+  <?php endif; ?>
+    >
       <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
@@ -86,12 +94,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Home
+                Product
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="user_list.php" class="nav-link">
+            <a href="category.php" class="nav-link">
               <i class="nav-icon fa fa-list"></i>
               <p>
                 Category
@@ -125,4 +133,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+
     <!-- /.content-header -->
